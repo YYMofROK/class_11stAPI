@@ -7,7 +7,7 @@ class Class_CoupangAPI {
     public $accessKey   =   '';
     public $secretKey   =   '';
     public $vendorId    =   '';
-	  public $datetime	  =   '';
+    public $datetime    =   '';
     
     
     public function __construct($args)
@@ -236,26 +236,24 @@ class Class_CoupangAPI {
 	
 	private function curlHttpRequest( $ReqUrl, $method, $authorization, $strjson=null)
 	{
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $ReqUrl);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:  application/json;charset=UTF-8", "Authorization:".$authorization ,"X-EXTENDED-TIMEOUT:60000"));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    
-		if( is_null( $strjson ) == true )
-		{
-			//	@ nothing
-		}else{
-			curl_setopt($curl, CURLOPT_POSTFIELDS, $strjson);
-		}//	end if
-		
-    $result		=	curl_exec($ch);
-		$httpcode	=	curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    
-    curl_close($ch);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $ReqUrl);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:  application/json;charset=UTF-8", "Authorization:".$authorization ,"X-EXTENDED-TIMEOUT:60000"));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
+			if( is_null( $strjson ) == true )
+			{
+				//	@ nothing
+			}else{
+				curl_setopt($curl, CURLOPT_POSTFIELDS, $strjson);
+			}//	end if
+
+		$result		=	curl_exec($ch);
+		$httpcode	=	curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		curl_close($ch);
 		return $result;
-		
+
 	}//	end function
     
     
